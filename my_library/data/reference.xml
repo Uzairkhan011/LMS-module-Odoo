@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+    <data>
+        <record id="sequence_auto_book_field" model="ir.sequence">
+            <field name="name">reference</field>
+            <field name="code">book.detail.seq</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</flectra>

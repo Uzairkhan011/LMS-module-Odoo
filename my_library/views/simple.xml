@@ -1,0 +1,65 @@
+<!-- <flectra>
+    <data>
+        <!-- Define the custom form view -->
+        <record model="ir.ui.view" id="view_student_detail_form">
+            <field name="name">student.detail.form</field>
+            <field name="model">student.detail</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="father_name"/>
+                            <field name="name"/>
+                            <field name="book_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Define the custom tree (list) view -->
+        <record model="ir.ui.view" id="view_student_detail_tree">
+            <field name="name">student.detail.tree</field>
+            <field name="model">student.detail</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="book_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Define the custom search options -->
+        <record model="ir.ui.view" id="view_student_detail_search">
+            <field name="name">student.detail.search</field>
+            <field name="model">student.detail</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- Custom search filters and options here... -->
+                </search>
+            </field>
+        </record>
+        
+        <!-- Define the action for the form view -->
+        <record model="ir.actions.act_window" id="action_student_detail_form">
+            <field name="name">Student Details</field>
+            <field name="res_model">student.detail</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_student_detail_form"/>
+            <field name="target">current</field>
+        </record>
+        
+        <!-- Define the action for the tree (list) view -->
+        <record model="ir.actions.act_window" id="action_student_detail_tree">
+            <field name="name">Student List</field>
+            <field name="res_model">student.detail</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_student_detail_tree"/>
+            <field name="search_view_id" ref="view_student_detail_search"/>
+        </record>
+        
+        <!-- Define the menu item -->
+        <menuitem id="menu_student_details" name="Student Details" parent="base.menu_administration" action="action_student_detail_form"/>
+        <menuitem id="menu_student_list" name="Student List" parent="base.menu_administration" action="action_student_detail_tree"/>
+    </data>
+</flectra> -->

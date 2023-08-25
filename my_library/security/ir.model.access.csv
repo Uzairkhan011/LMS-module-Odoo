@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_book_detail_form,access.book.detail.form,model_book_detail,,1,1,1,1
+access_library_detail_form,access.library.detail.form,model_library_detail,,1,1,1,1
+access_author_model,access.author.model,model_author,,1,1,1,1
+access_language_model,access.language.model,model_language,,1,1,1,1
+access_categories_model,access.categories.model,model_categories,,1,1,1,1
+
+access_contries_model,access.contries.model,model_countries,,1,1,1,1

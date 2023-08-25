@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+    <data>
+        <record id="view_author_form" model="ir.ui.view">
+            <field name="name">author.model.form</field>
+            <field name="model">author</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_language_form" model="ir.ui.view">
+            <field name="name">language.model.form</field>
+            <field name="model">language</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_countries_form" model="ir.ui.view">
+            <field name="name">countries.model.form</field>
+            <field name="model">countries</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" widget='country'/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_categories_form" model="ir.ui.view">
+            <field name="name">categories.model.form</field>
+            <field name="model">categories</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+          <!-- Action for Author -->
+        <record id="action_author_form" model="ir.actions.act_window">
+            <field name="name">Authors</field>
+            <field name="res_model">author</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="view_author_form"/>
+            <field name="target">current</field>
+        </record>
+
+         <!-- Action for Language -->
+        <record id="action_language_form" model="ir.actions.act_window">
+            <field name="name">Languages</field>
+            <field name="res_model">language</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="view_language_form"/>
+            <field name="target">current</field>
+        </record>
+
+        <!-- Action for Countries -->
+        <record id="action_countries_form" model="ir.actions.act_window">
+            <field name="name">Countries</field>
+            <field name="res_model">countries</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="view_countries_form"/>
+            <field name="target">current</field>
+        </record>
+
+        <!-- Action for Categories -->
+        <record id="action_categories_form" model="ir.actions.act_window">
+            <field name="name">Categories</field>
+            <field name="res_model">categories</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="view_categories_form"/>
+            <field name="target">current</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_book_detail_form">
+            <field name="name">book.detail.form</field>
+            <field name="model">book.detail</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_avb" string="Available"  class="oe_highlight btn btn-primary" 
+                            attrs="{'invisible':[('state','!=','draft')]}"   type="object"/>
+                        <button name="action_lost" string="Lost" class="oe_highlight btn btn-primary" 
+                          attrs="{'invisible':[('state','in',('draft','lost'))]}"   type="object"/>
+                        <button name="action_Rest" string="Back to draft" class="oe_highlight btn btn-primary"
+                          attrs="{'invisible':[('state','!=','lost')]}"    type="object"/>
+                        <field name="state" widget="statusbar" options="{'clickable':'1'}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <h3>
+                                    <field name = 'reference'/>
+                                </h3>
+                                <field name="name"/>
+                                <field name="author"/>
+                                <field name="date_release"/>
+                                <field name="Language"/>
+                            </group>
+
+                            <group>
+                                <field name="price"/>
+                                <field name="categories"/>
+                                <field name="page_number"/>
+                                <field name="priority" widget="priority" />
+                                <field name="book_type" widget="radio"/>
+                                <field name="active" invisible="1"/>
+                                <!-- <review name="feedback"/> -->
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_book_detail_tree">
+            <field name="name">book.detail.tree</field>
+            <field name="model">book.detail</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="reference"/>
+                    <field name="name"/>
+                    <field name="author"/>
+                    <field name="categories" optional="hide"/>
+                    <field name="book_type" widget="radio" optional="hide"/>
+                    <field name="page_number"/>
+                    <field name="price" optional="hide"/>
+                    <!-- <field name="book_id"/> -->
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_book_detail_search">
+            <field name="name">book.detail.search</field>
+            <field name="model">book.detail</field>
+            <field name="arch" type="xml">
+                 <search>
+                    <field name="name"/>
+                    <field name="reference"/>
+                    <field name="author"/>
+                    <field name="price"/>
+                    <filter name="active" string="Active" domain="[('active','=', True)]"/>
+                    <filter name="archive" string="Archieve" domain="[('active','=', False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="author" string="Author" domain="[]" context="{'group_by':'author'}"/>
+                        <filter name="categories" string="Category" domain="[]" context="{'group_by':'categories'}"/>
+                        <filter name="book_type" string="Book Type" domain="[]" context="{'group_by':'book_type'}"/>
+                    </group>
+                 </search>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_library_detail_form">
+            <field name="name">library.detail.form</field>
+            <field name="model">library.detail</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                               <span>Address</span>
+                                <div class="o_address_format">
+                                    <field name="house" placeholder="House..." class="o_address_street" />
+                                    <field name="street" placeholder="Street ..." class="o_address_street" />
+                                    <field name="city" placeholder="City" class="o_address_city" />
+                                    <field name="state_id" class="o_address_state" placeholder="State" />
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip" />
+                                    <field name="country_id" placeholder="Country" class="o_address_country" />
+                                </div>
+                                <field name="active" invisible="1"/>
+                            </group>
+                           <group>
+                                <field name = 'phone'/>
+                                <field name = 'country_id'/>
+                                <field name = 'type' widget="radio"/>
+                            </group>
+                        </group>
+                        <notebook>   
+                             <page name="Book" string="Book">
+                                <field name = "book_id"/>
+                            </page>
+                            <page name="description" string="Description"></page>
+                             <page name="Attachment" string="Attachment"></page>
+                             
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_library_detail_tree">
+            <field name="name">library.detail.tree</field>
+            <field name="model">library.detail</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="phone"/>
+                    <field name="country_id"/>
+                    <!-- <field name="book_id"/> -->
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_library_detail_search">
+            <field name="name">library.detail.search</field>
+            <field name="model">library.detail</field>
+            <field name="arch" type="xml">
+                 <search>
+                 <field name="name" string="Library Name"/>
+                 <field name="type"/>
+                 <field name="phone"/>
+                 <filter name="active" string="Active" domain="[('active','=', True)]"/>
+                 <filter name="archive" string="Archieve" domain="[('active','=', False)]"/>
+                 <group expand="0" string="Group By">
+                        <filter name="country_id" string="Country" domain="[]" context="{'group_by':'country_id'}"/>
+                        <filter name="type" string="Type" domain="[]" context="{'group_by':'type'}" />
+                    </group>
+                 </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_library_detail_form">
+            <field name="name">library Details</field>
+            <field name="res_model">library.detail</field>
+            <field name="view_mode">tree,form,search</field>
+            <!-- <field name="view_id" ref="view_student_detail_form"/> -->
+            <!-- <field name="target">current</field> -->
+        </record>
+        
+        <record model="ir.actions.act_window" id="action_book_detail_tree">
+            <field name="name">Books</field>
+            <field name="res_model">book.detail</field>
+            <field name="view_mode">tree,form</field>
+        </record> 
+
+        
+        <record id="action_libraries_tree" model="ir.actions.act_window">
+        <field name="name">Libraries</field>
+        <field name="res_model">library.detail</field>
+        <field name="view_mode">tree,form,search</field>
+        <!-- <field name="view_library_detail_tree" ref="view_library_detail.view_library_detail_form"/> -->
+        </record>
+
+        <menuitem id="root_menu"  name="My Library" />
+        <menuitem id="menu_student_list" parent="root_menu" name="Books"  action="action_book_detail_tree"/>
+        <menuitem id="menu_library_libraries" parent="root_menu" name="Libraries" action="action_libraries_tree"/>
+        <menuitem id="menu_library_configuration" parent="root_menu" name="Configuration"/>
+        <menuitem id="menu_library_author" parent="menu_library_configuration" name="Author" action="action_author_form"/>
+        <menuitem id="menu_library_language" parent="menu_library_configuration" name="Language" action="action_language_form"/>
+        <menuitem id="menu_library_countries" parent="menu_library_configuration" name="Countries" action="action_countries_form"/>
+        <menuitem id="menu_library_categories" parent="menu_library_configuration" name="Categories" action="action_categories_form"/>
+        <!-- <menuitem id="menu_student_details" parent="root_menu"  name="Books" action="action_student_detail_form"/> -->
+        
+    </data>
+
+</flectra>

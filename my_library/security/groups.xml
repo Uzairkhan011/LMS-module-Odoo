@@ -1,0 +1,14 @@
+
+<flectra>
+    <data>
+        <record model="res.groups" id="group_library_assistant">
+             <field name="name">Library Assistant</field>
+             <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+
+        <record model="res.groups" id="group_student">
+             <field name="name">Student</field>
+             <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+    </data>
+</flectra> 
